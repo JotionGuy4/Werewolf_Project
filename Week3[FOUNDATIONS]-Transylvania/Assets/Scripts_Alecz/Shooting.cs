@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shooting : MonoBehaviour
 {
@@ -20,6 +21,11 @@ public class Shooting : MonoBehaviour
     private LineRenderer laserLine; //laser line
     private float nextFire; //hold the time at which the player will be able to shoot again
 
+    //public int ammo;
+    //public bool isFiring;
+    //public Text ammoDisplay;
+
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -31,9 +37,17 @@ public class Shooting : MonoBehaviour
    
     void Update()
     {
+        //ammoDisplay.text = ammo.ToString();
+
        // if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+       // if (Input.GetMouseButtonDown("Fire1") && !isFiring && ammo > 0)
             if (Input.GetButtonDown("Fire1"))
             {
+
+            //isFiring = true;
+            //ammo--;
+            //isFiring = false;
+            
             nextFire = Time.time + fireRate;
             audioSource.Play();
             StartCoroutine(ShotEffect());
@@ -67,6 +81,8 @@ public class Shooting : MonoBehaviour
             {
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
             }
+
+
         }
     }
     

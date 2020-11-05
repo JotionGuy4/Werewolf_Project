@@ -16,7 +16,9 @@ public class MyEnemy : MonoBehaviour
 
         Werewolf = GetComponent<NavMeshAgent>();
         
+        
     }
+
 
     
     void Update()

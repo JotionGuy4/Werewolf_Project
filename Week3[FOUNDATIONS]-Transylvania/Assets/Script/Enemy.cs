@@ -15,6 +15,18 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Werewolf = GetComponent<NavMeshAgent>();
+
+        switch (GameValues.Difficulty)
+        {
+            case GameValues.Difficulties.Easy:
+                WerewolfDistanceRun = 15;
+
+                break;
+            case GameValues.Difficulties.Hard:
+                WerewolfDistanceRun = 50;
+                break;
+        }
+
     }
 
     // Update is called once per frame

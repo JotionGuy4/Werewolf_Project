@@ -1,18 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MyPlayer : MonoBehaviour
 {
-    public int maxHealth = 10;
+    public int maxHealth = 20;
     public int currentHealth;
     public MyHealthBar healthBar;
+
     //public GameObject postprocessVolume;
 
     private void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+
+        switch (GameValues.Difficulty)
+        {
+            case GameValues.Difficulties.Easy:
+                maxHealth = 10;
+
+                break;
+            case GameValues.Difficulties.Hard:
+                maxHealth = 40;
+                break;
+        }
+
+
     }
 
     /* private void Update()
@@ -29,7 +44,7 @@ public class MyPlayer : MonoBehaviour
 
         if (other.gameObject.tag == "Enemy")
         {
-            TakeDamage(1);
+            TakeDamage(3);
             //postprocessVolume.SetActive(true);
 
         }
@@ -37,9 +52,24 @@ public class MyPlayer : MonoBehaviour
 
 
         public void TakeDamage (int damage)
-    {
+        {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
+        }
+
+  /*  void Update()
+    {
+        if(maxHealth<=0)
+        {
+            Restart();
+        }
     }
+
+    void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+  */
 
 }
